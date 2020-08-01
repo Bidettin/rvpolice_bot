@@ -10,7 +10,24 @@ bot.on('ready', () => {
     console.log('RV Police está online!')
     const srv = new FiveM.Server('177.54.146.42:30120')
     srv.getPlayers().then(data =>
-    bot.user.setActivity(`Com ${data} habitantes.`, "https://twitch.tv/godzinhu",  {type: "PLAYING"}))
+      timer = bot.setInterval(function() {
+        var uptime = `${bot.uptime}`;
+        var seg = Math.floor(uptime / 1000) % 60;
+        var min = Math.floor(uptime / (1000 * 60)) % 60;
+        var horas = Math.floor(uptime / (1000 * 60 * 60)) % 24;
+        let tempo = `Estou online a ${horas} horas, ${min} minutos e ${seg} segundos`
+  
+        var gamePresence = [
+            `${data} com habitantes.`,
+        ];
+        bot.user.setPresence({
+            game: {
+                name: gamePresence[i % gamePresence.length],
+                type: 0
+            }
+        });
+        i++;
+    }, 9000))
 })
 
 bot.on("guildMemberAdd", member => {
