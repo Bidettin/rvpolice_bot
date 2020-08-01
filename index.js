@@ -8,6 +8,9 @@ bot.commands = new Discord.Collection();
 
 bot.on('ready', () => {
     console.log('RV Police está online!')
+    const srv = new FiveM.Server('177.54.146.42:30120')
+    srv.getPlayers().then(data =>
+    bot.user.setActivity(`${data} com habitantes.`, "https://twitch.tv/godzinhu",  {type: "PLAYING"}))
 })
 
 bot.on("guildMemberAdd", member => {
@@ -23,6 +26,8 @@ bot.on("message", (message) => {
       srv.getPlayers().then(data =>
         message.channel.send(`Servidor está __ONLINE__ com **${data}** players.`))
     }
+    
   })
+
 
 bot.login(settings.token)
