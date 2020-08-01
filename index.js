@@ -10,7 +10,7 @@ bot.on('ready', () => {
     console.log('RV Police está online!')
     const srv = new FiveM.Server('177.54.146.42:30120')
     srv.getPlayers().then(data =>
-    bot.user.setActivity(`${data} com habitantes.`, "https://twitch.tv/godzinhu",  {type: "PLAYING"}))
+    bot.user.setActivity(`Com ${data} habitantes.`, "https://twitch.tv/godzinhu",  {type: "PLAYING"}))
 })
 
 bot.on("guildMemberAdd", member => {
