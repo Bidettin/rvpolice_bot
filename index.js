@@ -6,11 +6,11 @@ const FiveM = require("fivem")
 bot.commands = new Discord.Collection();
 
 
-bot.on('ready', () => {
+/*bot.on('ready', () => {
     console.log('RV Police está online!')
     var i = 0;
     const srv = new FiveM.Server('177.54.146.42:30120')
-    srv.getPlayers().then(data =>
+    srv.getPlayers().then(quantidade =>
       timer = bot.setInterval(function() {
         var uptime = `${bot.uptime}`;
         var seg = Math.floor(uptime / 1000) % 60;
@@ -19,8 +19,9 @@ bot.on('ready', () => {
         let tempo = `Estou online a ${horas} horas, ${min} minutos e ${seg} segundos`
   
         var gamePresence = [
-            `${data} com habitantes.`,
-            tempo,
+            'Olhando o registro de oficiais!',
+            `${quantidade} com habitantes.`,
+            'Proteger e servir!'
         ];
         bot.user.setPresence({
             game: {
@@ -29,8 +30,19 @@ bot.on('ready', () => {
             }
         });
         i++;
-    }, 9000)
+    }, 5000)
     )
+}) */
+
+
+bot.on('ready', () => {
+    const srv = new FiveM.Server('177.54.146.42:30120')
+    srv.getPlayers().then(quantidade =>
+    setInterval(() => bot.user.setActivity(`Com ${quantidade} habitantes.`, {
+        type: "PLAYING"
+    }), 5000)
+    )
+    console.log('RV Police está online!')
 })
 
 bot.on("guildMemberAdd", member => {
@@ -42,7 +54,6 @@ bot.on("guildMemberAdd", member => {
 bot.on("message", (message) => {
     const srv = new FiveM.Server('177.54.146.42:30120')
     if (message.content.toLowerCase().startsWith(settings.prefix + "servidor")) {
-      srv.getCurrentPlayers().then(data => console.log(data))
       srv.getPlayers().then(data =>
         message.channel.send(`Servidor está __ONLINE__ com **${data}** players.`))
     }
