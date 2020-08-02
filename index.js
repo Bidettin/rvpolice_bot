@@ -8,6 +8,7 @@ bot.commands = new Discord.Collection();
 
 bot.on('ready', () => {
     console.log('RV Police está online!')
+    var i = 0;
     const srv = new FiveM.Server('177.54.146.42:30120')
     srv.getPlayers().then(data =>
       timer = bot.setInterval(function() {
@@ -19,6 +20,7 @@ bot.on('ready', () => {
   
         var gamePresence = [
             `${data} com habitantes.`,
+            tempo,
         ];
         bot.user.setPresence({
             game: {
@@ -27,7 +29,8 @@ bot.on('ready', () => {
             }
         });
         i++;
-    }, 9000))
+    }, 9000)
+    )
 })
 
 bot.on("guildMemberAdd", member => {
