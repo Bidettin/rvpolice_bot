@@ -37,11 +37,10 @@ bot.commands = new Discord.Collection();
 
 bot.on('ready', () => {
     const srv = new FiveM.Server('177.54.146.42:30120')
-    srv.getPlayers().then(quantidade =>
-    setInterval(() => bot.user.setActivity(`Com ${quantidade} habitantes.`, {
+    setInterval(() => srv.getPlayers().then(quantidade => bot.user.setActivity(`Com ${quantidade} habitantes.`, {
         type: "PLAYING"
-    }), 5000)
-    )
+    })), 5000)
+   
     console.log('RV Police está online!')
 })
 
